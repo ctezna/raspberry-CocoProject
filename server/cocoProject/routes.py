@@ -1,4 +1,4 @@
-from cocoProject import app, db
+from cocoProject import app, db, static
 
 @app.route("/")
 def init():
