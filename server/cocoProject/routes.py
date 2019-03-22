@@ -1,5 +1,6 @@
-from cocoProject import app, db, static/Logo_big.png
+from cocoProject import app, db
+from cocoProject.static import Logo_big.png
 
 @app.route("/")
 def init():
-    return static/Logo_big.png
+    return Logo_big.png
