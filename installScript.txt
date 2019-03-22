@@ -1,0 +1,4 @@
+sudo apt update
+sudo apt full−upgrade
+sudo apt install connectd
+sudo connectd_installer
