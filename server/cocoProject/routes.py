@@ -1,6 +1,6 @@
 from cocoProject import app, db
 from cocoProject.camera_pi import Camera
-from flask import render_template, Response
+from flask import render_template, Response, url_for
 
 
 @app.route("/")
