@@ -3,7 +3,6 @@ from cocoProject.camera_pi import Camera
 from flask import render_template, Response, url_for
 
 
-@app.route("/")
 @app.route("/camera")
 def init():
     return render_template('index.html')
@@ -20,7 +19,7 @@ def gen(camera):
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 @app.route("/cam")
-def camera():
+def cam():
     """Video streaming route. Put this in the src attribute of an img tag."""
     return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
