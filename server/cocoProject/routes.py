@@ -4,8 +4,9 @@ from flask import render_template, Response
 
 
 @app.route("/")
+@app.route("/camera")
 def init():
-    return "Welcome to The Coco Project IoT module."
+    return render_template('index.html')
 
 @app.route("/feed")
 def feed():
@@ -18,7 +19,7 @@ def gen(camera):
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-@app.route("/camera")
+@app.route("/cam")
 def camera():
     """Video streaming route. Put this in the src attribute of an img tag."""
     return Response(gen(Camera()),
