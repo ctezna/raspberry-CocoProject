@@ -14,7 +14,7 @@ def feed():
     motor.on()
     sleep(3)
     motor.off()
-    return 0
+    return "feed"
 
 def gen(camera):
     """Video streaming generator function."""
