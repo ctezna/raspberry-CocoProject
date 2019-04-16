@@ -1,6 +1,7 @@
 from cocoProject import app, db
 from cocoProject.camera_pi import Camera
 from flask import render_template, Response, url_for
+from cocoProject.cocoGPIO import feed
 
 
 @app.route("/camera")
@@ -9,7 +10,7 @@ def init():
 
 @app.route("/feed")
 def feed():
-    return "This will activate the food dispenser."
+    return feed(4)
 
 def gen(camera):
     """Video streaming generator function."""

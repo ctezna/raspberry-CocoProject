@@ -1,3 +1,5 @@
+#Author: Miguel Grinberg
+
 import time
 import threading
 try:
