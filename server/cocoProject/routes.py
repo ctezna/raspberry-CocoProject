@@ -1,7 +1,8 @@
-from cocoProject import app, db
+from cocoProject import app, db, motor
 from cocoProject.camera_pi import Camera
 from flask import render_template, Response, url_for
 from cocoProject.cocoGPIO import feed
+from time import sleep
 
 
 @app.route("/camera")
@@ -10,7 +11,9 @@ def init():
 
 @app.route("/feed")
 def feed():
-    feed(4,1.5)
+    motor.on()
+    sleep(1.5)
+    motor.off()
     return "feed"
 
 def gen(camera):
