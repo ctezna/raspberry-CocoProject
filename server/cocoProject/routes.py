@@ -31,9 +31,14 @@ def cam():
 
 @app.route("/lightOn")
 def lightOn():
-
+        for i in leds.numPixels():
+                leds.setPixelColorRGB(i,255,255,255)
+        leds.show()
         return "lightOn"
 
 @app.route("/lightOff")
 def lightOff():
+        for i in leds.numPixels():
+                leds.setPixelColorRGB(i,0,0,0)
+        leds.show()
         return "lightOff"
