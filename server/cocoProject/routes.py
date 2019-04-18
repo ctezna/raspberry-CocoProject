@@ -1,8 +1,8 @@
-from cocoProject import app, db, motor
+from cocoProject import app, db, motor, leds
 from cocoProject.camera_pi import Camera
 from flask import render_template, Response, url_for
-from cocoProject.cocoGPIO import feed
 from time import sleep
+from rpi_ws281x import *
 
 
 @app.route("/camera")
@@ -28,3 +28,12 @@ def cam():
     """Video streaming route. Put this in the src attribute of an img tag."""
     return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route("/lightOn")
+def lightOn():
+
+        return "lightOn"
+
+@app.route("/lightOff")
+def lightOff():
+        return "lightOff"

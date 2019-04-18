@@ -1,0 +1,5 @@
+red cable : +5V
+blue cable : GND
+yellow cable: motor
+orange cable: LEDs
+white dots: POSITIVE
