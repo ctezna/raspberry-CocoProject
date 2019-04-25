@@ -9,7 +9,7 @@ import pygame
 @app.route("/camera")
 def init():
     pygame.mixer.init()
-    pygame.mixer.Sound("static/ringtones/whistle.mp3")
+    pygame.mixer.Sound("static/ringtones/whistle.wav")
     pygame.mixer.Sound.play(loops=3)
     return render_template('index.html')
 
