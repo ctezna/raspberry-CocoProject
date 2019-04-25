@@ -8,6 +8,8 @@ import pygame
 
 @app.route("/camera")
 def init():
+    pygame.mixer.pre_init(44100, 16, 2, 4096)
+    pygame.init()
     pygame.mixer.init()
     pygame.mixer.Sound("static/ringtones/whistle.wav")
     pygame.mixer.Sound.play(loops=3)
