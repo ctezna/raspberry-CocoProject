@@ -3,7 +3,7 @@ from cocoProject.camera_pi import Camera
 from flask import render_template, Response, url_for
 from time import sleep
 #from rpi_ws281x import *
-import pygame
+import pygame, os
 
 
 @app.route("/camera")
@@ -11,8 +11,13 @@ def init():
     pygame.init()
     pygame.mixer.init()
     ring = os.path.join("static", "ringtones", "whistle.wav")
-    pygame.mixer.Sound(ring)
-    pygame.mixer.Sound.play(loops=3)
+    try:
+        pygame.mixer.Sound(ring)
+        pygame.mixer.Sound.play(loops=3)
+        pass
+    except:
+        print("ringtone error")
+        pass
     return render_template('index.html')
 
 @app.route("/feed")
