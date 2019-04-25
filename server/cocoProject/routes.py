@@ -1,4 +1,4 @@
-from cocoProject import app, db, motor, leds
+from cocoProject import app, db, motor #, leds
 from cocoProject.camera_pi import Camera
 from flask import render_template, Response, url_for
 from time import sleep
@@ -9,10 +9,8 @@ import pygame
 @app.route("/camera")
 def init():
     pygame.mixer.init()
-    pygame.mixer.music.load("static/ringtones/whistle.mp3")
-    pygame.mixer.music.play()
-    pygame.mixer.music.play()
-    pygame.mixer.music.play()
+    pygame.mixer.Sound("static/ringtones/whistle.mp3")
+    pygame.mixer.Sound.play(loops=3)
     return render_template('index.html')
 
 @app.route("/feed")
