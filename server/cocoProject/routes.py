@@ -2,7 +2,7 @@ from cocoProject import app, db, motor, leds
 from cocoProject.camera_pi import Camera
 from flask import render_template, Response, url_for
 from time import sleep
-from rpi_ws281x import *
+#from rpi_ws281x import *
 import pygame
 
 
@@ -10,6 +10,8 @@ import pygame
 def init():
     pygame.mixer.init()
     pygame.mixer.music.load("static/ringtones/whistle.mp3")
+    pygame.mixer.music.play()
+    pygame.mixer.music.play()
     pygame.mixer.music.play()
     return render_template('index.html')
 
@@ -35,19 +37,19 @@ def cam():
 
 @app.route("/lightOn")
 def lightOn():
-        for i in leds.numPixels():
-                leds.setPixelColorRGB(i,255,255,255)
-        leds.show()
+        #for i in leds.numPixels():
+                #leds.setPixelColorRGB(i,255,255,255)
+        #leds.show()
         return "lightOn"
 
 @app.route("/lightOff")
 def lightOff():
-        for i in leds.numPixels():
-                leds.setPixelColorRGB(i,0,0,0)
-        leds.show()
+        #for i in leds.numPixels():
+                #leds.setPixelColorRGB(i,0,0,0)
+        #leds.show()
         return "lightOff"
 
 @app.route("/routine", methods=['GET','POST'])
 def routine():
-        
+
         return "saved"
