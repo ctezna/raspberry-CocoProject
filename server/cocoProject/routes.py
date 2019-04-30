@@ -12,7 +12,7 @@ def init():
     pygame.mixer.init()
     ring = os.path.join("static", "ringtones", "whistle.wav")
     try:
-        cmd = "oxmplayer " + ring
+        cmd = "omxplayer " + ring
         os.system(cmd)
         #pygame.mixer.Sound(ring)
         #pygame.mixer.Sound.play(loops=3)
