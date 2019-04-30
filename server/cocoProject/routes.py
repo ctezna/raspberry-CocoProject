@@ -15,6 +15,10 @@ def init():
         cmd = "omxplayer " + ring
         #os.system('ls')
         os.system(cmd)
+        os.system(cmd)
+        os.system(cmd)
+        os.system(cmd)
+        os.system(cmd)
         #pygame.mixer.Sound(ring)
         #pygame.mixer.Sound.play(loops=3)
         pass
