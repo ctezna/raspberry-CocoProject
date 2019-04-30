@@ -10,10 +10,10 @@ import pygame, os
 def init():
     pygame.init()
     pygame.mixer.init()
-    ring = os.path.join("static", "ringtones", "whistle.wav")
+    ring = os.path.join("cocoProject", "static", "ringtones", "whistle.wav")
     try:
         cmd = "omxplayer " + ring
-        os.system('ls')
+        #os.system('ls')
         os.system(cmd)
         #pygame.mixer.Sound(ring)
         #pygame.mixer.Sound.play(loops=3)
