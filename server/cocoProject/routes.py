@@ -12,8 +12,10 @@ def init():
     pygame.mixer.init()
     ring = os.path.join("static", "ringtones", "whistle.wav")
     try:
-        pygame.mixer.Sound(ring)
-        pygame.mixer.Sound.play(loops=3)
+        cmd = "oxmplayer " + ring
+        os.system(cmd)
+        #pygame.mixer.Sound(ring)
+        #pygame.mixer.Sound.play(loops=3)
         pass
     except:
         print("ringtone error")
