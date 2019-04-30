@@ -3,28 +3,12 @@ from cocoProject.camera_pi import Camera
 from flask import render_template, Response, url_for
 from time import sleep
 #from rpi_ws281x import *
-import pygame, os
+import os
 
 
 @app.route("/camera")
 def init():
-    pygame.init()
-    pygame.mixer.init()
-    ring = os.path.join("cocoProject", "static", "ringtones", "whistle.wav")
-    try:
-        cmd = "omxplayer " + ring
-        #os.system('ls')
-        os.system(cmd)
-        os.system(cmd)
-        os.system(cmd)
-        os.system(cmd)
-        os.system(cmd)
-        #pygame.mixer.Sound(ring)
-        #pygame.mixer.Sound.play(loops=3)
-        pass
-    except:
-        print("ringtone error")
-        pass
+    
     return render_template('index.html')
 
 @app.route("/feed")
@@ -33,6 +17,19 @@ def feed():
     sleep(1.5)
     motor.off()
     return "feed"
+
+@app.route("/ring")
+def ring():
+    ring = os.path.join("cocoProject", "static", "ringtones", "whistle.wav")
+    try:
+        cmd = "omxplayer " + ring
+        os.system(cmd)
+        os.system(cmd)
+        pass
+    except:
+        print("ringtone error")
+        pass
+    return "ring"
 
 def gen(camera):
     """Video streaming generator function."""

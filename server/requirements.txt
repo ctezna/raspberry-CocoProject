@@ -2,7 +2,6 @@ Click==7.0
 colorzero==1.1
 python-dotenv==0.9.1
 picamera==1.8
-pygame==1.9.6
 Flask==1.0.2
 Flask-SQLAlchemy==2.3.2
 gevent==1.4.0
