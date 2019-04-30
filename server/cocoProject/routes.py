@@ -13,6 +13,7 @@ def init():
 
 @app.route("/feed")
 def feed():
+    ring()
     motor.on()
     sleep(1.5)
     motor.off()
