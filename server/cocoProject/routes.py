@@ -1,4 +1,4 @@
-from cocoProject import app, db, motor, pixles
+from cocoProject import app, db , motor, pixels
 from cocoProject.camera_pi import Camera
 from flask import render_template, Response, url_for
 from time import sleep
@@ -12,15 +12,15 @@ def init():
 
 @app.route("/feed")
 def feed():
-    ring()
+    ring("foodShake.mp3")
     motor.on()
     sleep(1.25)
     motor.off()
     return "feed"
 
 @app.route("/ring")
-def ring():
-    ring = os.path.join("cocoProject", "static", "ringtones", "whistle.wav")
+def ring(sound="whistle.wav"):
+    ring = os.path.join("cocoProject", "static", "ringtones", sound)
     try:
         cmd = "omxplayer " + ring
         os.system(cmd)
@@ -47,13 +47,13 @@ def cam():
 @app.route("/lightOn")
 def lightOn():
         pixels.fill((255, 255, 255))
-        pixles.show()
+        pixels.show()
         return "lightOn"
 
 @app.route("/lightOff")
 def lightOff():
         pixels.fill((0, 0, 0))
-        pixles.show()
+        pixels.show()
         return "lightOff"
 
 @app.route("/routine", methods=['GET','POST'])
