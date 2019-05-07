@@ -1,8 +1,7 @@
-from cocoProject import app, db, motor #, leds
+from cocoProject import app, db, motor, pixles
 from cocoProject.camera_pi import Camera
 from flask import render_template, Response, url_for
 from time import sleep
-#from rpi_ws281x import *
 import os
 
 
@@ -15,7 +14,7 @@ def init():
 def feed():
     ring()
     motor.on()
-    sleep(1.5)
+    sleep(1.25)
     motor.off()
     return "feed"
 
@@ -47,16 +46,14 @@ def cam():
 
 @app.route("/lightOn")
 def lightOn():
-        #for i in leds.numPixels():
-                #leds.setPixelColorRGB(i,255,255,255)
-        #leds.show()
+        pixels.fill((255, 255, 255))
+        pixles.show()
         return "lightOn"
 
 @app.route("/lightOff")
 def lightOff():
-        #for i in leds.numPixels():
-                #leds.setPixelColorRGB(i,0,0,0)
-        #leds.show()
+        pixels.fill((0, 0, 0))
+        pixles.show()
         return "lightOff"
 
 @app.route("/routine", methods=['GET','POST'])
