@@ -1,4 +1,4 @@
-from cocoProject import app, db , motor, pixels
+from cocoProject import app, motor, pixels
 from cocoProject.camera_pi import Camera
 from flask import render_template, Response, url_for
 from time import sleep
