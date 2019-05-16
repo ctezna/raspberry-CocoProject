@@ -1,2 +1,7 @@
 env/
 .vscode
+__pycache__
+cocoProject/__pycache__
+.DS_Store
+cocoProject/.DS_Store
+cocoProject/static/.DS_Store

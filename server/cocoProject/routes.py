@@ -56,7 +56,8 @@ def lightOff():
         pixels.show()
         return "lightOff"
 
-@app.route("/routine", methods=['GET','POST'])
-def routine():
-
-        return "saved"
+@app.route("/reboot", methods=['GET','POST'])
+def reboot():
+        cmd = "sudo reboot"
+        os.system(cmd)
+        return "rebooted"
