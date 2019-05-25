@@ -16,6 +16,9 @@ def feed():
     motor.on()
     sleep(1.25)
     motor.off()
+    lightOn = os.path.join("cocoProject", "lights", "effects.py")
+    cmd = "sudo python3 " + lightOn
+    os.system(cmd)
     return "feed"
 
 @app.route("/ring")
@@ -46,14 +49,14 @@ def cam():
 
 @app.route("/lightOn")
 def lightOn():
-        lightOn = os.path.join("cocoProject", "lightOn.py")
+        lightOn = os.path.join("cocoProject", "lights", "lightOn.py")
         cmd = "sudo python3 " + lightOn
         os.system(cmd)
         return "lightOn"
 
 @app.route("/lightOff")
 def lightOff():
-        lightOff = os.path.join("cocoProject", "lightOff.py")
+        lightOff = os.path.join("cocoProject", "lights", "lightOff.py")
         cmd = "sudo python3 " + lightOff
         os.system(cmd)
         return "lightOff"

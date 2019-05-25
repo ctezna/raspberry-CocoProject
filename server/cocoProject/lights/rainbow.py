@@ -49,7 +49,7 @@ def rainbow_cycle(wait):
         pixels.show()
         time.sleep(wait)
 
-delay = 3 #seconds
+delay = 5 #seconds
 t_end = time.time() + delay
 while time.time() < t_end:
 	rainbow_cycle(0.001)    # rainbow cycle with 1ms delay per step
