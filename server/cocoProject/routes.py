@@ -16,9 +16,6 @@ def feed():
     motor.on()
     sleep(1.25)
     motor.off()
-    lightOn = os.path.join("cocoProject", "lights", "effects.py")
-    cmd = "sudo python3 " + lightOn
-    os.system(cmd)
     return "feed"
 
 @app.route("/ring")
