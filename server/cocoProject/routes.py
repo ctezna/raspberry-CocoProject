@@ -46,13 +46,15 @@ def cam():
 
 @app.route("/lightOn")
 def lightOn():
-        cmd = "sudo python3 lightOn.py"
+        lightOn = os.path.join("cocoProject", "lightOn.py")
+        cmd = "sudo python3 " + lightOn
         os.system(cmd)
         return "lightOn"
 
 @app.route("/lightOff")
 def lightOff():
-        cmd = "sudo python3 lightOff.py"
+        lightOff = os.path.join("cocoProject", "lightOff.py")
+        cmd = "sudo python3 " + lightOff
         os.system(cmd)
         return "lightOff"
 
