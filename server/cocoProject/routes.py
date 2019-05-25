@@ -46,14 +46,14 @@ def cam():
 
 @app.route("/lightOn")
 def lightOn():
-        pixels.fill((255, 255, 255))
-        pixels.show()
+        cmd = "sudo python3 lightOn.py"
+        os.system(cmd)
         return "lightOn"
 
 @app.route("/lightOff")
 def lightOff():
-        pixels.fill((0, 0, 0))
-        pixels.show()
+        cmd = "sudo python3 lightOff.py"
+        os.system(cmd)
         return "lightOff"
 
 @app.route("/reboot", methods=['GET','POST'])
