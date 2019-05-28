@@ -12,7 +12,7 @@ def init():
 
 @app.route("/feed")
 def feed():
-    ring("foodShake.mp3")
+    #ring("foodShake.mp3")
     motor.on()
     sleep(1.25)
     motor.off()
@@ -23,8 +23,8 @@ def ring(sound="whistle.wav"):
     ring = os.path.join("cocoProject", "static", "ringtones", sound)
     try:
         cmd = "omxplayer " + ring
-        os.system(cmd)
-        os.system(cmd)
+        #os.system(cmd)
+        #os.system(cmd)
         pass
     except:
         print("ringtone error")

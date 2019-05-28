@@ -38,7 +38,7 @@ def FadeRGB(strip):
                 SetAll(strip, (0, 0, j))
             strip.show()
         #Fade Out.
-        for j in range (256, 0, -1):
+        for j in range (256, 0, 0):
             if i == 0:
                 SetAll(strip, (j, 0, 0))
             elif i == 1:
