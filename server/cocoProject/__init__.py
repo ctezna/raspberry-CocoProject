@@ -11,7 +11,7 @@ if Config.HARDWARE != 'pizero':
     lightOn = os.path.join("cocoProject", "lights", "rainbow.py")
     cmd = "sudo python3 " + lightOn
     os.system(cmd)
-l   lightOff = os.path.join("cocoProject", "lights", "lightOff.py")
+    lightOff = os.path.join("cocoProject", "lights", "lightOff.py")
     cmd = "sudo python3 " + lightOff
     os.system(cmd)
 elif Config.HARDWARE == 'pizero':
