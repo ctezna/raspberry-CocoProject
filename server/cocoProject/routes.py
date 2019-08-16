@@ -5,12 +5,12 @@ from time import sleep
 import os
 
 
-@app.route("/camera")
+@app.route("/camera", methods=['GET','POST'])
 def init():
     
     return render_template('index.html')
 
-@app.route("/feed")
+@app.route("/feed", methods=['GET','POST'])
 def feed():
     #ring("foodShake.mp3")
     if motor != 404:
@@ -19,7 +19,7 @@ def feed():
         motor.off()
     return "feed"
 
-@app.route("/ring")
+@app.route("/ring", methods=['GET','POST'])
 def ring(sound="whistle.wav"):
     ring = os.path.join("cocoProject", "static", "ringtones", sound)
     try:
@@ -39,20 +39,20 @@ def gen(camera):
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-@app.route("/cam")
+@app.route("/cam", methods=['GET','POST'])
 def cam():
     """Video streaming route. Put this in the src attribute of an img tag."""
     return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@app.route("/lightOn")
+@app.route("/lightOn", methods=['GET','POST'])
 def lightOn():
         lightOn = os.path.join("cocoProject", "lights", "lightOn.py")
         cmd = "sudo python3 " + lightOn
         os.system(cmd)
         return "lightOn"
 
-@app.route("/lightOff")
+@app.route("/lightOff", methods=['GET','POST'])
 def lightOff():
         lightOff = os.path.join("cocoProject", "lights", "lightOff.py")
         cmd = "sudo python3 " + lightOff
