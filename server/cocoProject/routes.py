@@ -13,9 +13,10 @@ def init():
 @app.route("/feed")
 def feed():
     #ring("foodShake.mp3")
-    motor.on()
-    sleep(1.25)
-    motor.off()
+    if motor != 404:
+        motor.on()
+        sleep(1.25)
+        motor.off()
     return "feed"
 
 @app.route("/ring")
