@@ -4,3 +4,4 @@ sudo apt install omxplayer
 sudo pip3 install rpi_ws281x adafruit-circuitpython-neopixel
 sudo apt install connectd
 sudo connectd_installer
+put auto run command in .bash_rc

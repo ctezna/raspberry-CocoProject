@@ -1,19 +1,14 @@
-from cocoProject import app, motor
+from cocoProject import app, motor, lightStatus
 from cocoProject.camera_pi import Camera
 from flask import render_template, Response, url_for
 from time import sleep
 import os
 
 
-@app.route("/camera", methods=['GET','POST'])
-def init():
-    
-    return render_template('index.html')
-
 @app.route("/feed", methods=['GET','POST'])
 def feed():
-    #ring("foodShake.mp3")
     if motor != 404:
+        ring("foodShake.mp3")
         motor.on()
         sleep(1.25)
         motor.off()
@@ -24,8 +19,9 @@ def ring(sound="whistle.wav"):
     ring = os.path.join("cocoProject", "static", "ringtones", sound)
     try:
         cmd = "omxplayer " + ring
-        #os.system(cmd)
-        #os.system(cmd)
+        if lightStatus == 0:
+            os.system(cmd)
+            os.system(cmd)
         pass
     except:
         print("ringtone error")
@@ -50,6 +46,7 @@ def lightOn():
         lightOn = os.path.join("cocoProject", "lights", "lightOn.py")
         cmd = "sudo python3 " + lightOn
         os.system(cmd)
+        lightStatus = 1
         return "lightOn"
 
 @app.route("/lightOff", methods=['GET','POST'])
@@ -57,6 +54,7 @@ def lightOff():
         lightOff = os.path.join("cocoProject", "lights", "lightOff.py")
         cmd = "sudo python3 " + lightOff
         os.system(cmd)
+        lightStatus = 0
         return "lightOff"
 
 @app.route("/reboot", methods=['GET','POST'])
