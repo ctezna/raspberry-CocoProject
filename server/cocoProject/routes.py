@@ -19,8 +19,7 @@ def ring(sound="whistle.wav"):
     ring = os.path.join("cocoProject", "static", "ringtones", sound)
     try:
         cmd = "omxplayer " + ring
-        if lightStatus == 0:
-                os.system(cmd)
+        #os.system(cmd)
         pass
     except:
         print("ringtone error")
