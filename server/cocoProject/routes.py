@@ -6,11 +6,11 @@ import os
 
 
 @app.route("/feed", methods=['GET','POST'])
-def feed():
+def feed(delay=0.3):
     if motor != 404:
         #ring("foodShake.mp3")
         motor.on()
-        sleep(0.65)
+        sleep(delay)
         motor.off()
     return "feed"
 
