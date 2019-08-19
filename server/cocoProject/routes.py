@@ -20,8 +20,7 @@ def ring(sound="whistle.wav"):
     try:
         cmd = "omxplayer " + ring
         if lightStatus == 0:
-            os.system(cmd)
-            os.system(cmd)
+            #os.system(cmd)
         pass
     except:
         print("ringtone error")
