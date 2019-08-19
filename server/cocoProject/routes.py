@@ -12,10 +12,6 @@ def feed():
         motor.on()
         sleep(0.65)
         motor.off()
-        sleep(0.5)
-        motor.on()
-        sleep(0.65)
-        motor.off()
     return "feed"
 
 @app.route("/ring", methods=['GET','POST'])
