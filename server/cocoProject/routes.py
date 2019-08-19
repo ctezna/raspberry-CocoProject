@@ -6,7 +6,7 @@ import os
 
 
 @app.route("/feed", methods=['GET','POST'])
-def feed(delay=0.3):
+def feed(delay=1):
     if motor != 404:
         #ring("foodShake.mp3")
         motor.on()
