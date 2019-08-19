@@ -10,7 +10,11 @@ def feed():
     if motor != 404:
         #ring("foodShake.mp3")
         motor.on()
-        sleep(1.25)
+        sleep(0.65)
+        motor.off()
+        sleep(0.5)
+        motor.on()
+        sleep(0.65)
         motor.off()
     return "feed"
 
