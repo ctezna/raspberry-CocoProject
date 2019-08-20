@@ -56,7 +56,9 @@ class CameraEvent(object):
 class BaseCamera(object):
     thread = None  # background thread that reads frames from camera
     frame = None  # current frame is stored here by background thread
-    is_active = 0  # time of last client access to the camera
+    last_access = 0  # time of last client access to the camera
+    is_active = 0  # if client is asking for frames
+    thread_duration = 10 # how long camera threads will last
     event = CameraEvent()
 
     def __init__(self, start_thread):
@@ -67,6 +69,7 @@ class BaseCamera(object):
     def start_camera_thread(self):
         """ Starts camera thread """
         if BaseCamera.thread is None:
+            BaseCamera.last_access = time.time()
             BaseCamera.is_active =  1
             # start background frame thread
             BaseCamera.thread = threading.Thread(target=self._thread)
@@ -83,7 +86,7 @@ class BaseCamera(object):
 
     def get_frame(self):
         """Return the current camera frame."""
-
+        BaseCamera.last_access = time.time()
         # wait for a signal from the camera thread
         BaseCamera.event.wait()
         BaseCamera.event.clear()
@@ -105,8 +108,11 @@ class BaseCamera(object):
             BaseCamera.event.set()  # send signal to clients
             time.sleep(0)
 
-            # if client asks for stream to close
-            if BaseCamera.is_active == 0:
+            # if client asks for stream to close or
+            # if there hasn't been any clients asking for frames in
+            # certain time period then stop the thread
+            if BaseCamera.is_active == 0 or 
+            time.time() - BaseCamera.last_access > BaseCamera.thread_duration:
                 frames_iterator.close()
                 print('Stopping camera thread.')
                 break
