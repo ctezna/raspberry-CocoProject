@@ -1,5 +1,4 @@
-from cocoProject import app, motor, lightStatus
-from cocoProject.camera_pi import Camera
+from cocoProject import app, motor, lightStatus, camera
 from flask import render_template, Response, url_for, jsonify
 from time import sleep
 import os
@@ -39,9 +38,10 @@ def gen(camera):
 @app.route("/cam", methods=['GET','POST'])
 def cam():
     """Video streaming route. Put this in the src attribute of an img tag."""
-    return Response(gen(Camera()),
+    return Response(gen(camera),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
+    
 @app.route("/lightOn", methods=['GET','POST'])
 def lightOn():
         lightOn = os.path.join("cocoProject", "lights", "lightOn.py")
