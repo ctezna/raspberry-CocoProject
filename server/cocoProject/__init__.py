@@ -8,7 +8,7 @@ from time import sleep
 app = Flask(__name__)
 app.config.from_object(Config)
 if Config.HARDWARE != 'pizero':
-    camera = Camera(1)
+    camera = Camera(0)
     motor = OutputDevice(4)
     lightOn = os.path.join("cocoProject", "lights", "rainbow.py")
     cmd = "sudo python3 " + lightOn

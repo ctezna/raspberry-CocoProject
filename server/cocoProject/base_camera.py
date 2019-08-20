@@ -62,8 +62,7 @@ class BaseCamera(object):
     def __init__(self, start_thread):
         """Start the background camera thread if it isn't running yet."""
         if start_thread == 1:
-            start_camera_thread()
-
+            BaseCamera.start_camera_thread()
 
     def start_camera_thread(self):
         if BaseCamera.thread is None:
