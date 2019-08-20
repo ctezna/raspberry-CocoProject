@@ -30,6 +30,7 @@ def ring(sound="whistle.wav"):
 
 def gen(camera):
     """Video streaming generator function."""
+    camera.start_camera_thread()
     while True:
         frame = camera.get_frame()
         yield (b'--frame\r\n'
@@ -38,7 +39,7 @@ def gen(camera):
 @app.route("/cam", methods=['GET','POST'])
 def cam():
     """Video streaming route. Put this in the src attribute of an img tag."""
-    return Response(gen(camera.start_camera_thread()),
+    return Response(gen(camera),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route("/camOff", methods=['GET','POST'])  
