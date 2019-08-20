@@ -56,18 +56,18 @@ class CameraEvent(object):
 class BaseCamera(object):
     thread = None  # background thread that reads frames from camera
     frame = None  # current frame is stored here by background thread
-    last_access = 0  # time of last client access to the camera
+    is_active = 0  # time of last client access to the camera
     event = CameraEvent()
 
     def __init__(self, start_thread):
-        """Start the background camera thread if it isn't running yet."""
+        """Starts background thread if user specifies"""
         if start_thread == 1:
             BaseCamera.start_camera_thread()
 
     def start_camera_thread(self):
+        """ Starts camera thread """
         if BaseCamera.thread is None:
-            BaseCamera.last_access = time.time()
-
+            BaseCamera.is_active =  1
             # start background frame thread
             BaseCamera.thread = threading.Thread(target=self._thread)
             BaseCamera.thread.start()
@@ -77,13 +77,12 @@ class BaseCamera(object):
                 time.sleep(0)
 
     def stop_camera_thread(self):
-        print('Stopping camera thread.')
+        """ Stops camera thread """
         BaseCamera.thread = None
-        BaseCamera.last_access -= 11
+        BaseCamera.is_active = 0
 
     def get_frame(self):
         """Return the current camera frame."""
-        BaseCamera.last_access = time.time()
 
         # wait for a signal from the camera thread
         BaseCamera.event.wait()
@@ -106,10 +105,9 @@ class BaseCamera(object):
             BaseCamera.event.set()  # send signal to clients
             time.sleep(0)
 
-            # if there hasn't been any clients asking for frames in
-            # the last 10seconds then stop the thread
-            if time.time() - BaseCamera.last_access > 10:
+            # if client asks for stream to close
+            if BaseCamera.is_active == 0:
                 frames_iterator.close()
-                print('Stopping camera thread due to inactivity.')
+                print('Stopping camera thread.')
                 break
         BaseCamera.thread = None
