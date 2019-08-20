@@ -77,8 +77,7 @@ class BaseCamera(object):
                 time.sleep(0)
 
     def stop_camera_thread(self):
-        print('Stopping camera thread')
-        BaseCamera.thread.stop()
+        print('Stopping camera thread.')
         BaseCamera.thread = None
         BaseCamera.last_access = time.time()
 
