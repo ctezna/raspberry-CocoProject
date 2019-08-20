@@ -1,5 +1,4 @@
-from cocoProject import app, motor, lightStatus
-from cocoProject.camera_pi import Camera
+from cocoProject import app, motor, lightStatus, camera
 from flask import render_template, Response, url_for, jsonify
 from time import sleep
 import os
@@ -39,31 +38,35 @@ def gen(camera):
 @app.route("/cam", methods=['GET','POST'])
 def cam():
     """Video streaming route. Put this in the src attribute of an img tag."""
-    return Response(gen(Camera()),
+    return Response(gen(camera.start_camera_thread()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
-    
+@app.route("/camOff", methods=['GET','POST'])  
+def camOff():
+    camera.stop_camera_thread()
+    return "cam off"
+
 @app.route("/lightOn", methods=['GET','POST'])
 def lightOn():
-        lightOn = os.path.join("cocoProject", "lights", "lightOn.py")
-        cmd = "sudo python3 " + lightOn
-        os.system(cmd)
-        lightStatus = 1
-        rsp = {'response':1}
-        return jsonify(rsp)
+    lightOn = os.path.join("cocoProject", "lights", "lightOn.py")
+    cmd = "sudo python3 " + lightOn
+    os.system(cmd)
+    lightStatus = 1
+    rsp = {'response':1}
+    return jsonify(rsp)
 
 @app.route("/lightOff", methods=['GET','POST'])
 def lightOff():
-        lightOff = os.path.join("cocoProject", "lights", "lightOff.py")
-        cmd = "sudo python3 " + lightOff
-        os.system(cmd)
-        lightStatus = 0
-        rsp = {'response':1}
-        return jsonify(rsp)
+    lightOff = os.path.join("cocoProject", "lights", "lightOff.py")
+    cmd = "sudo python3 " + lightOff
+    os.system(cmd)
+    lightStatus = 0
+    rsp = {'response':1}
+    return jsonify(rsp)
 
 @app.route("/reboot", methods=['GET','POST'])
 def reboot():
-        cmd = "sudo reboot"
-        os.system(cmd)
-        rsp = {'response':1}
-        return jsonify(rsp)
+    cmd = "sudo reboot"
+    os.system(cmd)
+    rsp = {'response':1}
+    return jsonify(rsp)

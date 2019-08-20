@@ -1,5 +1,6 @@
 from flask import Flask, request
 from config import Config
+from cocoProject.camera_pi import Camera
 from gpiozero import OutputDevice
 import os
 from time import sleep
@@ -7,6 +8,7 @@ from time import sleep
 app = Flask(__name__)
 app.config.from_object(Config)
 if Config.HARDWARE != 'pizero':
+    camera = Camera(1)
     motor = OutputDevice(4)
     lightOn = os.path.join("cocoProject", "lights", "rainbow.py")
     cmd = "sudo python3 " + lightOn
@@ -16,6 +18,7 @@ if Config.HARDWARE != 'pizero':
     os.system(cmd)
     lightStatus = 0
 elif Config.HARDWARE == 'pizero':
+    camera = Camera(0)
     motor = 404
     lightStatus = 0
 
