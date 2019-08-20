@@ -1,6 +1,6 @@
 from cocoProject import app, motor, lightStatus
 from cocoProject.camera_pi import Camera
-from flask import render_template, Response, url_for
+from flask import render_template, Response, url_for, jsonify
 from time import sleep
 import os
 
@@ -12,7 +12,10 @@ def feed(delay=1):
         motor.on()
         sleep(delay)
         motor.off()
-    return "feed"
+        rsp = {'response':1}
+        return jsonify(rsp)
+    rsp = {'response':0}
+    return jsonify(rsp)
 
 @app.route("/ring", methods=['GET','POST'])
 def ring(sound="whistle.wav"):
@@ -45,7 +48,8 @@ def lightOn():
         cmd = "sudo python3 " + lightOn
         os.system(cmd)
         lightStatus = 1
-        return "lightOn"
+        rsp = {'response':1}
+        return jsonify(rsp)
 
 @app.route("/lightOff", methods=['GET','POST'])
 def lightOff():
@@ -53,10 +57,12 @@ def lightOff():
         cmd = "sudo python3 " + lightOff
         os.system(cmd)
         lightStatus = 0
-        return "lightOff"
+        rsp = {'response':1}
+        return jsonify(rsp)
 
 @app.route("/reboot", methods=['GET','POST'])
 def reboot():
         cmd = "sudo reboot"
         os.system(cmd)
-        return "rebooted"
+        rsp = {'response':1}
+        return jsonify(rsp)
