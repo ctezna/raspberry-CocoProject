@@ -1,5 +1,6 @@
 from cocoProject import app, motor, lightStatus, camera
 from flask import render_template, Response, url_for, jsonify, request
+from cocoProject.routine_control import save_routine
 from time import sleep
 import os, json
 
@@ -80,9 +81,5 @@ def addRoutine():
 		'days': request.args.get('days'),
 		'times': request.args.get('times')
 		}
-	basedir = os.path.abspath(os.path.dirname(__file__))
-	routines = os.path.join(basedir, 'static', 'tasks','tasks.json')
-	with open(routines, 'w') as f:
-		json.dump(task, f)
-	print(task)
+	save_routine(task)
 	return jsonify({'task': task}), 201
