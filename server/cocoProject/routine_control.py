@@ -1,15 +1,22 @@
-import json, os
 from cocoProject import db
+from cocoProject.models import Routine
 
 
 
-def save_routine(task):
-    basedir = os.path.abspath(os.path.dirname(__file__))
-    routines = os.path.join(basedir, 'static', 'tasks','tasks.json')
-    with open(routines, 'w') as f:
-        json.dump(task, f)
-    
+def save_routine(routineId, task, days, times):
+    routine = Routine(id=routineId, task=task, days=days, times=times)
+    db.session.add(routine)
+    db.session.commit()
+    task = {
+        "id": routine.id,
+        "task": routine.task,
+        "days": routine.days,
+        "times": routine.times
+    }
     return task
 
-def delete_routine(id):
+def delete_routine(routineId):
+    routine = Routine.query.filter_by(id=routineId).first_or_404()
+    db.session.delete(routine)
+    db.session.commit()
     return 0
