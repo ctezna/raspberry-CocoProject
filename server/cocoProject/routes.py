@@ -1,7 +1,7 @@
 from cocoProject import app, motor, lightStatus, camera
 from flask import render_template, Response, url_for, jsonify, request
 from time import sleep
-import os
+import os, json
 
 
 @app.route("/feed", methods=['GET','POST'])
