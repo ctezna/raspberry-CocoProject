@@ -1,0 +1,3 @@
+fix thread duration in base_camera.py
+
+finish routine_control.py
