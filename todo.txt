@@ -1,3 +1,6 @@
 fix thread duration in base_camera.py
 
 finish routine_control.py
+
+use threading for running lights and audio
+simultaneously
