@@ -80,7 +80,9 @@ def addRoutine():
 		'days': request.args.get('days'),
 		'times': request.args.get('times')
 		}
-	with open(url_for('static',filename='tasks/tasks.json'), 'w') as f:
+	basedir = os.path.abspath(os.path.dirname(__file__))
+	routines = os.path.join(basedir, 'static', 'tasks','tasks.json')
+	with open(routines, 'w') as f:
 		json.dump(task, f)
 	print(task)
 	return jsonify({'task': task}), 201
