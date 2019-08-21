@@ -31,5 +31,5 @@ def get_routines():
             "days": r.days,
             "times": r.times
         }
-        response.append(r)
+        response.append(routine)
     return response
