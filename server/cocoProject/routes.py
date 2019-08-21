@@ -75,7 +75,7 @@ def reboot():
 
 @app.route("/addRoutine", methods=['GET'])
 def addRoutine():
-	save_routine(request.args.get('id'),request.args.get('task'),\
+	task = save_routine(request.args.get('id'),request.args.get('task'),\
 			request.args.get('days'),request.args.get('times'))
 	return jsonify({'task': task}), 201
 
