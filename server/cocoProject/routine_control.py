@@ -12,3 +12,4 @@ def save_routine(task):
     return task
 
 def delete_routine(id):
+    return 0
