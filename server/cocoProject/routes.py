@@ -72,13 +72,13 @@ def reboot():
 	rsp = {'response':1}
 	return jsonify(rsp)
 
-@app.route("/addRoutine", methods=['POST'])
+@app.route("/addRoutine", methods=['GET'])
 def addRoutine():
 	task = {
-		'id': request.json['id'],
-		'task': request.json['task'],
-		'days': request.json['days'],
-		'times': request.json['times']
+		'id': request.args.get('id'),
+		'task': request.args.get('task'),
+		'days': request.args.get('days'),
+		'times': request.args.get('times')
 		}
 	with open(url_for('static','tasks/tasks.json'), 'w') as f:
 		json.dump(task, f)
