@@ -61,7 +61,7 @@ class BaseCamera(object):
     thread_duration = 10 # how long camera threads will last
     event = CameraEvent()
 
-    def __init__(self, start_thread):
+    def __init__(self, start_thread=0):
         """Starts background thread if user specifies"""
         if start_thread == 1:
             BaseCamera.start_camera_thread()
