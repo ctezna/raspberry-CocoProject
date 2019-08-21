@@ -1,6 +1,6 @@
 from cocoProject import app, motor, lightStatus, camera
 from flask import render_template, Response, url_for, jsonify, request
-from cocoProject.routine_control import save_routine, delete_routine
+from cocoProject.routine_control import save_routine, delete_routine, get_routines
 from time import sleep
 import os, json
 
@@ -84,3 +84,8 @@ def removeRoutine():
 	routineId = request.args.get('id')
 	delete_routine(routineId)
 	return jsonify({'routine': routineId}), 201
+
+@app.route("/getRoutines", methods=['GET'])
+def getRoutines():
+	routines = jsonify(get_routines())
+	return jsonify({'routines': routines}, 201)

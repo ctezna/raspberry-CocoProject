@@ -20,3 +20,16 @@ def delete_routine(routineId):
     db.session.delete(routine)
     db.session.commit()
     return 0
+
+def get_routines():
+    routines = Routine.query.all()
+    response = []
+    for r in routines:
+        routine = {
+            "id" : r.id,
+            "task": r.task,
+            "days": r.days,
+            "times": r.times
+        }
+        response.append(r)
+    return response
