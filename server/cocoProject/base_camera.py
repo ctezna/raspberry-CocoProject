@@ -112,7 +112,7 @@ class BaseCamera(object):
             # if client asks for stream to close or
             # if there hasn't been any clients asking for frames in
             # certain time period then stop the thread
-            if BaseCamera.is_active == 0 or 
+            if BaseCamera.is_active == 0 or \
             time.time() - BaseCamera.last_access > BaseCamera.thread_duration:
                 frames_iterator.close()
                 print('Stopping camera thread.')
