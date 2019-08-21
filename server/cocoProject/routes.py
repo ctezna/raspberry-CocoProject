@@ -87,5 +87,5 @@ def removeRoutine():
 
 @app.route("/getRoutines", methods=['GET'])
 def getRoutines():
-	routines = jsonify(get_routines())
+	routines = get_routines()
 	return jsonify({'routines': routines}, 201)
