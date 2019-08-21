@@ -58,11 +58,12 @@ class BaseCamera(object):
     frame = None  # current frame is stored here by background thread
     last_access = 0  # time of last client access to the camera
     is_active = 0  # if client is asking for frames
-    thread_duration = 10 # how long camera threads will last
+    thread_duration = 0 # how long camera threads will last
     event = CameraEvent()
 
-    def __init__(self, start_thread=0):
+    def __init__(self, start_thread=0, duration=10):
         """Starts background thread if user specifies"""
+        BaseCamera.thread_duration = duration
         if start_thread == 1:
             BaseCamera.start_camera_thread()
 
