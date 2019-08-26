@@ -13,9 +13,9 @@ class LightControl():
 
     def _thread(self, red, green, blue, brightness):
         lightFile = os.path.join("cocoProject", "lights", "lightController.py")
-        cmd = "sudo python3 " + lightFile + red + " "\
-             + green + " " + blue + " " + brightness
+        cmd = "sudo python3 " + lightFile + str(red) + " "\
+             + str(green) + " " + str(blue) + " " + str(brightness)
         if red < 0 and green < 0 and blue < 0:
             lightFile = os.path.join("cocoProject", "lights", "rainbow.py")
-            cmd = "sudo python3 " + lightFile + " " + brightness
+            cmd = "sudo python3 " + lightFile + " " + str(brightness)
         os.system(cmd)
