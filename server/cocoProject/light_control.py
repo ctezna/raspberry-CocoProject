@@ -8,7 +8,7 @@ class LightControl():
         self.thread = None
 
     def lightSwitch(self, filename):
-        LightControl.thread = theading.Thread(target=self._thread(filename))
+        LightControl.thread = threading.Thread(target=self._thread(filename))
         LightControl.thread.start()
 
     def _thread(self, filename):
