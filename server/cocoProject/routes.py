@@ -48,11 +48,15 @@ def camOff():
 	camera.stop_camera_thread()
 	return "cam off"
 
-@app.route("/light/<lightFile>", methods=['GET','POST'])
-def lightOn(lightFile):
-	lightFile = lightFile + '.py'
-	lightControl.lightSwitch(lightFile)
-	if lightFile == 'lightOff.py':
+@app.route("/light", methods=['GET','POST'])
+def light():
+	red = request.args.get('red')
+	green = request.args.get('green')
+	blue = request.args.get('blue')
+	brightness = request.args.get('brightness')
+	lightControl.lightSwitch(red, green,\
+			blue, brightness)
+	if red == 0 and green == 0 and blue == 0:
 		lightStatus = 0
 	else:
 		lightStatus = 1
