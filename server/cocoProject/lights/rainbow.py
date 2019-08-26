@@ -15,7 +15,7 @@ num_pixels = 24
 # For RGBW NeoPixels, simply change the ORDER to RGBW or GRBW.
 ORDER = neopixel.RGB
  
-pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=sys.argv[1], auto_write=False,
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=float(sys.argv[1]), auto_write=False,
                            pixel_order=ORDER)
  
  
