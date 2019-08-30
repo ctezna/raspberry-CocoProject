@@ -1,6 +1,6 @@
 import board
 import neopixel
-import time
+import time, sys
 import datetime
 import math
 import random
