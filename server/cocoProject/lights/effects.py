@@ -16,7 +16,7 @@ num_pixels = 24
 # For RGBW NeoPixels, simply change the ORDER to RGBW or GRBW.
 ORDER = neopixel.RGB
  
-pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.2, auto_write=False,
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=float(sys.argv[1]), auto_write=False,
                            pixel_order=ORDER)
 
 
@@ -38,7 +38,7 @@ def FadeRGB(strip):
                 SetAll(strip, (0, 0, j))
             strip.show()
         #Fade Out.
-        for j in range (256, 0, 0):
+        for j in range (256, 0):
             if i == 0:
                 SetAll(strip, (j, 0, 0))
             elif i == 1:

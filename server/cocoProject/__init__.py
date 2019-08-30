@@ -14,7 +14,7 @@ lightControl = LightControl()
 if Config.HARDWARE != 'pizero':
     camera = Camera()
     motor = OutputDevice(4)
-    lightControl.lightSwitch(-1, -1, -1, 0.2)
+    lightControl.lightSwitch(-2, -2, -2, 0.2)
     lightControl.lightSwitch(0, 0, 0, 0)
     lightStatus = 0
 elif Config.HARDWARE == 'pizero':

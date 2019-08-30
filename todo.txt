@@ -1,3 +1,4 @@
 fix thread duration in base_camera.py
 
 finish routine_control.py
+store light status in DB

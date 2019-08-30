@@ -15,7 +15,10 @@ class LightControl():
         lightFile = os.path.join("cocoProject", "lights", "lightController.py")
         cmd = "sudo python3 " + lightFile + " " +  str(red) + " "\
              + str(green) + " " + str(blue) + " " + str(brightness)
-        if int(red) < 0 and int(green) < 0 and int(blue) < 0:
+        if int(red) == -1 and int(green) < == -1 and int(blue) < == -1:
             lightFile = os.path.join("cocoProject", "lights", "rainbow.py")
+            cmd = "sudo python3 " + lightFile + " " + str(brightness)
+        elif int(red) == -2 and int(green) < == -2 and int(blue) < == -2:
+            lightFile = os.path.join("cocoProject", "lights", "effects.py")
             cmd = "sudo python3 " + lightFile + " " + str(brightness)
         os.system(cmd)
