@@ -48,7 +48,7 @@ def FadeRGB(strip):
             strip.show()
 
 
-delay = 5 #seconds
+delay = 3 #seconds
 t_end = time.time() + delay
 while time.time() < t_end:
 	FadeRGB(pixels)

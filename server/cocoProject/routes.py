@@ -1,4 +1,4 @@
-from cocoProject import app, motor, lightStatus, camera, lightControl
+from cocoProject import app, motor, lightStatus, camera, lightControl, soundControl
 from flask import render_template, Response, url_for, jsonify, request
 from cocoProject.routine_control import save_routine, delete_routine, get_routines
 from time import sleep
@@ -19,14 +19,7 @@ def feed(delay=1):
 
 @app.route("/ring", methods=['GET','POST'])
 def ring(sound="whistle.wav"):
-	ring = os.path.join("cocoProject", "static", "ringtones", sound)
-	try:
-		cmd = "omxplayer " + ring
-		#os.system(cmd)
-		pass
-	except:
-		print("ringtone error")
-		pass
+	soundControl.play(sound)
 	return "ring"
 
 def gen(camera):
