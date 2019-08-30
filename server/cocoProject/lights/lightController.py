@@ -1,10 +1,14 @@
 import board
 import neopixel
+import sys
 
 # Choose an open pin connected to the Data In of the NeoPixel strip, i.e. board.D18
 # NeoPixels must be connected to D10, D12, D18 or D21 to work.
 pixel_pin = board.D18
- 
+red = int(sys.argv[1])
+green = int(sys.argv[2])
+blue = int(sys.argv[3])
+brightness = float(sys.argv[4])
 # The number of NeoPixels
 num_pixels = 24
  
@@ -12,7 +16,7 @@ num_pixels = 24
 # For RGBW NeoPixels, simply change the ORDER to RGBW or GRBW.
 ORDER = neopixel.RGB
  
-pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.2, auto_write=False,
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=brightness, auto_write=False,
                            pixel_order=ORDER)
-pixels.fill((255,255,255))
+pixels.fill((green,red,blue))
 pixels.show()

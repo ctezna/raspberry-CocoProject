@@ -1,4 +1,4 @@
-from cocoProject import app, motor, lightStatus, camera
+from cocoProject import app, motor, lightStatus, camera, lightControl
 from flask import render_template, Response, url_for, jsonify, request
 from cocoProject.routine_control import save_routine, delete_routine, get_routines
 from time import sleep
@@ -48,21 +48,19 @@ def camOff():
 	camera.stop_camera_thread()
 	return "cam off"
 
-@app.route("/lightOn", methods=['GET','POST'])
-def lightOn():
-	lightOn = os.path.join("cocoProject", "lights", "lightOn.py")
-	cmd = "sudo python3 " + lightOn
-	os.system(cmd)
-	lightStatus = 1
-	rsp = {'response':1}
-	return jsonify(rsp)
-
-@app.route("/lightOff", methods=['GET','POST'])
-def lightOff():
-	lightOff = os.path.join("cocoProject", "lights", "lightOff.py")
-	cmd = "sudo python3 " + lightOff
-	os.system(cmd)
-	lightStatus = 0
+@app.route("/light", methods=['GET','POST'])
+def light():
+	red = request.args.get('red')
+	green = request.args.get('green')
+	blue = request.args.get('blue')
+	brightness = request.args.get('brightness')
+	lightControl.lightSwitch(red, green,\
+			blue, brightness)
+	if red == 0 and green == 0 and blue == 0:
+		lightStatus = 0
+	else:
+		lightStatus = 1
+	
 	rsp = {'response':1}
 	return jsonify(rsp)
 
