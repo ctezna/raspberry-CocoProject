@@ -5,4 +5,5 @@ sudo apt-get install python3-sqlalchemy
 sudo pip3 install rpi_ws281x adafruit-circuitpython-neopixel
 sudo apt install connectd
 sudo connectd_installer
+use port 8080 not 80
 put auto run command in .bashrc or rc.local
