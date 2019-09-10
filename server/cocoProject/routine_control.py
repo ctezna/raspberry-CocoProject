@@ -1,13 +1,16 @@
 from cocoProject import db
 from cocoProject.models import Routine
 from crontab import CronTab
+import os
 
 
 class RoutineControl():
     cron = None
 
     def __init__(self):
-        self.cron = CronTab(tabfile='tasks.tab')
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        file = os.path.join(basedir, 'tasks.tab')
+        self.cron = CronTab(tabfile=file)
 
 
     def new_cron(self, routineId, task, days, times):
