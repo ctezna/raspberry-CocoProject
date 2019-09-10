@@ -28,7 +28,8 @@ class RoutineControl():
             day = day.replace('thursday', '4')
             day = day.replace('friday', '5')
             day = day.replace('saturday', '6')
-            day = int(day)
+            if len(day) > 0:
+                day = int(day)
         times = times.split(',')
         for time in times:
             time = time.replace(',', '').strip().lower()
