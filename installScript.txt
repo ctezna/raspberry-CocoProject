@@ -1,6 +1,7 @@
 sudo apt update
 sudo apt full−upgrade
 sudo apt install omxplayer
+sudo apt install gunicorn
 sudo apt-get install python3-sqlalchemy
 sudo pip3 install rpi_ws281x adafruit-circuitpython-neopixel
 sudo apt install connectd

@@ -9,9 +9,7 @@ import os, json
 def feed(delay=1):
 	if motor != 404:
 		#ring("foodShake.mp3")
-		motor.on()
-		sleep(delay)
-		motor.off()
+		motor.feed(delay)
 		rsp = {'response':1}
 		return jsonify(rsp)
 	rsp = {'response':0}
