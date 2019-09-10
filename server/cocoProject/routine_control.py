@@ -18,18 +18,20 @@ class RoutineControl():
         cmd = 'python3 '+ task
         hours = []
         minutes = []
+        dates = []
         days = days.split(',')
         for day in days:
-            day = day.replace(',', '').strip().lower()
-            day = day.replace('sunday', '0')
-            day = day.replace('monday', '1')
-            day = day.replace('tuesday', '2')
-            day = day.replace('wednesday', '3')
-            day = day.replace('thursday', '4')
-            day = day.replace('friday', '5')
-            day = day.replace('saturday', '6')
+            day = day.replace(',', '').strip()
+            day = day.replace('Sunday', '0')
+            day = day.replace('Monday', '1')
+            day = day.replace('Tuesday', '2')
+            day = day.replace('Wednesday', '3')
+            day = day.replace('Thursday', '4')
+            day = day.replace('Friday', '5')
+            day = day.replace('Saturday', '6')
             if len(day) > 0:
                 day = int(day)
+                dates.append(day)
         times = times.split(',')
         for time in times:
             time = time.replace(',', '').strip().lower()
@@ -39,7 +41,7 @@ class RoutineControl():
             minutes.append(minute)
             
         job = self.cron.new(command=cmd, comment=routineId)
-        job.day.on(days)
+        job.day.on(dates)
         job.hour.on(hours)
         job.minute.on(minutes)
         self.cron.write()
