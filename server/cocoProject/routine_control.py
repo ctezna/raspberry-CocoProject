@@ -18,6 +18,7 @@ class RoutineControl():
         cmd = 'python3 '+ task
         hours = []
         minutes = []
+        days = days.split(',')
         for day in days:
             day = day.replace(',', '').strip().lower()
             day = day.replace('sunday', '0')
@@ -28,6 +29,7 @@ class RoutineControl():
             day = day.replace('friday', '5')
             day = day.replace('saturday', '6')
             day = int(day)
+        times = times.split(',')
         for time in times:
             time = time.replace(',', '').strip().lower()
             hour = time.split(':')[0]
@@ -46,7 +48,7 @@ class RoutineControl():
         self.cron.write()
 
     def save_routine(self, routineId, task, days, times):
-        new_cron(routineId, task,days,times)
+        new_cron(routineId, task, days, times)
         routine = Routine(id=routineId, task=task, days=days, times=times)
         db.session.add(routine)
         db.session.commit()
