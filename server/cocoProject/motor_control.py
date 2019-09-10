@@ -12,8 +12,10 @@ class MotorControl():
     def feed(self, delay=1):
         motor = OutputDevice(self.pin)
         motor.on()
-		sleep(delay)
+        sleep(delay)
         motor.off()
+
+
 
 
 
