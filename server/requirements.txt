@@ -1,6 +1,7 @@
 Click==7.0
 colorzero==1.1
 python-dotenv==0.9.1
+python-crontab==2.3.8
 picamera==1.8
 Flask==1.0.2
 Flask-SQLAlchemy==2.3.2

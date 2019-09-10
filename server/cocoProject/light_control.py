@@ -1,4 +1,4 @@
-import threading, os
+import threading, os, sys
 
 
 class LightControl():
@@ -22,3 +22,8 @@ class LightControl():
             lightFile = os.path.join("cocoProject", "lights", "effects.py")
             cmd = "sudo python3 " + lightFile + " " + str(brightness)
         os.system(cmd)
+
+
+if __name__ == "__main__":
+    light = LightControl()
+    light.lightSwitch(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
