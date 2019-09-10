@@ -48,7 +48,7 @@ class RoutineControl():
         self.cron.write()
 
     def save_routine(self, routineId, task, days, times):
-        new_cron(routineId, task, days, times)
+        self.new_cron(routineId, task, days, times)
         routine = Routine(id=routineId, task=task, days=days, times=times)
         db.session.add(routine)
         db.session.commit()
@@ -61,7 +61,7 @@ class RoutineControl():
         return task
 
     def delete_routine(self, routineId):
-        remove_cron(routineId)
+        self.remove_cron(routineId)
         routine = Routine.query.filter_by(id=routineId).first_or_404()
         db.session.delete(routine)
         db.session.commit()
