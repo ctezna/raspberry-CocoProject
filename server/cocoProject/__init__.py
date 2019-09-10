@@ -5,7 +5,6 @@ from cocoProject.camera_pi import Camera
 from cocoProject.light_control import LightControl
 from cocoProject.sound_control import SoundControl
 from cocoProject.motor_control import MotorControl
-from cocoProject.routine_control import RoutineControl
 import os
 from time import sleep
 
@@ -14,6 +13,7 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 lightControl = LightControl()
 soundControl = SoundControl()
+from cocoProject.routine_control import RoutineControl
 routineControl = RoutineControl()
 camera = Camera()
 if Config.DEVICETYPE == 'coco': 
