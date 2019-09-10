@@ -7,7 +7,7 @@ class RoutineControl():
     cron = None
 
     def __init__(self):
-        self.cron = CronTab()
+        self.cron = CronTab(tabfile='tasks.tab')
 
 
     def new_cron(self, routineId, task, days, times):
