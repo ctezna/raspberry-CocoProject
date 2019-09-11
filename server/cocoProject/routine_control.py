@@ -18,7 +18,7 @@ class RoutineControl():
             task = 'motor_control.py 4'
         if task == 'Light':
             task = 'light_control.py 255 255 255 0.4'
-        cmd = '$(which python3) '+ task + ' >> ~/cron.log 2>&1'
+        cmd = '$(which python3) /home/pi/raspberry-cocoproject/server/cocoProject/'+ task + ' >> ~/cron.log 2>&1'
         hours = []
         minutes = []
         dates = []
