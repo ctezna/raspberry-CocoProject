@@ -18,7 +18,7 @@ class RoutineControl():
             task = 'motor_control.py 4'
         if task == 'Light':
             task = 'light_control.py 255 255 255 0.4'
-        cmd = 'python3 '+ task
+        cmd = '$(which python3) '+ task + ' >> ~/cron.log 2>&1'
         hours = []
         minutes = []
         dates = []
@@ -43,14 +43,14 @@ class RoutineControl():
             hours.append(hour)
             minutes.append(minute)
             
-        job = self.cron.new(command=cmd, comment=routineId)
+        job = self.cron.new(command=cmd, comment=str(routineId))
         job.day.on(*dates)
         job.hour.on(*hours)
         job.minute.on(*minutes)
         self.cron.write()
 
     def remove_cron(self, comment):
-        self.cron.remove_all(comment=comment)
+        self.cron.remove_all(comment=str(comment))
         self.cron.write()
 
     def save_routine(self, routineId, task, days, times):
