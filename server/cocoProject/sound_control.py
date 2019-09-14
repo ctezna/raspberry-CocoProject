@@ -16,8 +16,10 @@ class SoundControl():
         while pygame.mixer.music.get_busy() == True:
             continue
         pygame.mixer.music.stop()
-        pygame.mixer.music.unload()
+        #pygame.mixer.music.unload()
         pygame.mixer.stop()
+
+
     def _thread(self, sound):
         ring = os.path.join("cocoProject", "static", "ringtones", sound)
         try:
