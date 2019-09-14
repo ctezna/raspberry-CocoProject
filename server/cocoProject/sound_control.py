@@ -7,9 +7,17 @@ class SoundControl():
         self.thread = None
 
     def play(self, sound):
-        SoundControl.thread = threading.Thread(target=self._thread(sound))
-        SoundControl.thread.start()
-
+        #SoundControl.thread = threading.Thread(target=self._thread(sound))
+        #SoundControl.thread.start()
+        ring = os.path.join("cocoProject", "static", "ringtones", sound)
+        pygame.mixer.init()
+        pygame.mixer.music.load(ring)
+        pygame.mixer.music.play()
+        while pygame.mixer.music.get_busy() == True:
+            continue
+        pygame.mixer.music.stop()
+        pygame.mixer.music.unload()
+        pygame.mixer.stop()
     def _thread(self, sound):
         ring = os.path.join("cocoProject", "static", "ringtones", sound)
         try:
