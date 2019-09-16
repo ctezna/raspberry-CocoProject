@@ -44,7 +44,7 @@ class RoutineControl():
             minutes.append(minute)
             
         job = self.cron.new(command=cmd, comment=str(routineId))
-        job.day.on(*dates)
+        job.dow.on(*dates)
         job.hour.on(*hours)
         job.minute.on(*minutes)
         self.cron.write()

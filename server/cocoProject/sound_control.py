@@ -16,7 +16,6 @@ class SoundControl():
         while pygame.mixer.music.get_busy() == True:
             continue
         pygame.mixer.music.stop()
-        #pygame.mixer.music.unload()
         pygame.mixer.stop()
 
 
@@ -29,7 +28,6 @@ class SoundControl():
             while pygame.mixer.music.get_busy() == True:
                 continue
             pygame.mixer.music.stop()
-            pygame.mixer.music.unload()
             pygame.mixer.stop()
             pass
         except:
