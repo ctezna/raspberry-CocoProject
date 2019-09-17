@@ -10,7 +10,7 @@ class RoutineControl():
     def __init__(self):
         basedir = os.path.abspath(os.path.dirname(__file__))
         self.file = os.path.join(basedir, 'tasks.tab')
-        self.cron = CronTab(tabfile=file)
+        self.cron = CronTab(tabfile=self.file)
 
 
     def new_cron(self, routineId, task, days, times):
