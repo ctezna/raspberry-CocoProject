@@ -36,7 +36,8 @@ def cam():
 @app.route("/camOff", methods=['GET','POST'])  
 def camOff():
 	camera.stop_camera_thread()
-	return "cam off"
+	rsp = {'response':1}
+	return jsonify(rsp)
 
 @app.route("/light", methods=['GET','POST'])
 def light():
