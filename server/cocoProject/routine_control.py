@@ -9,7 +9,7 @@ class RoutineControl():
 
     def __init__(self):
         basedir = os.path.abspath(os.path.dirname(__file__))
-        file = os.path.join(basedir, 'tasks.tab')
+        self.file = os.path.join(basedir, 'tasks.tab')
         self.cron = CronTab(tabfile=file)
 
 
@@ -48,10 +48,12 @@ class RoutineControl():
         job.hour.on(*hours)
         job.minute.on(*minutes)
         self.cron.write()
+        os.system("crontab " + self.file)
 
     def remove_cron(self, comment):
         self.cron.remove_all(comment=str(comment))
         self.cron.write()
+        os.system("crontab " + self.file)
 
     def save_routine(self, routineId, task, days, times):
         self.new_cron(routineId, task, days, times)

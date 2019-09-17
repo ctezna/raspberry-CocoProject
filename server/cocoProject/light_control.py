@@ -12,7 +12,8 @@ class LightControl():
         LightControl.thread.start()
 
     def _thread(self, red, green, blue, brightness):
-        lightFile = os.path.join("cocoProject", "lights", "lightController.py")
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        lightFile = os.path.join(basedir, "lights", "lightController.py")
         cmd = "sudo python3 " + lightFile + " " +  str(red) + " "\
              + str(green) + " " + str(blue) + " " + str(brightness)
         if int(red) == -1 and int(green) == -1 and int(blue) == -1:
