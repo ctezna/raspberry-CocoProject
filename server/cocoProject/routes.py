@@ -65,7 +65,7 @@ def addRoutine():
 
 @app.route("/removeRoutine", methods=['GET'])
 def removeRoutine():
-	routineId = request.args.get('id')
+	routineId = request.args.get('routine_id')
 	routineControl.delete_routine(routineId)
 	return jsonify({'routine': routineId}), 201
 
