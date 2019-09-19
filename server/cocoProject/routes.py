@@ -46,12 +46,7 @@ def light():
 	blue = request.args.get('blue')
 	brightness = request.args.get('brightness')
 	lightControl.lightSwitch(red, green,\
-			blue, brightness)
-	if red == 0 and green == 0 and blue == 0:
-		lightStatus = 0
-	else:
-		lightStatus = 1
-	
+			blue, brightness)	
 	rsp = {'response':1}
 	return jsonify(rsp)
 
@@ -64,7 +59,7 @@ def reboot():
 
 @app.route("/addRoutine", methods=['GET'])
 def addRoutine():
-	task = routineControl.save_routine(request.args.get('id'),request.args.get('task'),\
+	task = routineControl.save_routine(request.args.get('routine_id'),request.args.get('task'),\
 			request.args.get('days'),request.args.get('times'))
 	return jsonify({'task': task}), 201
 

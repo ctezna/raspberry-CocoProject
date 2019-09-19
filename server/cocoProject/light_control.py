@@ -2,7 +2,6 @@ import threading, os, sys
 
 
 class LightControl():
-    thread = None
     
     def __init__(self):
         self.thread = None
