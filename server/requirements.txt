@@ -5,6 +5,7 @@ python-crontab==2.3.8
 picamera==1.8
 Flask==1.0.2
 Flask-SQLAlchemy==2.3.2
+flask-ngrok==0.0.25
 gpiozero==1.5.0
 gunicorn==19.9.0
 itsdangerous==1.1.0
