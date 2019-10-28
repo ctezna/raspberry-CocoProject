@@ -1,5 +1,6 @@
-from cocoProject import app, motor, camera, lightControl, soundControl, routineControl
+from cocoProject import app, motor, camera, lightControl, routineControl
 from flask import render_template, Response, url_for, jsonify, request
+from cocoProject.models import Light
 from time import sleep
 import os, json
 
@@ -16,7 +17,7 @@ def feed(delay=1):
 
 @app.route("/ring", methods=['GET','POST'])
 def ring(sound="whistle.wav"):
-	soundControl.play(sound)
+	#soundControl.play(sound)
 	return "ring"
 
 def gen(camera):
@@ -41,12 +42,31 @@ def camOff():
 
 @app.route("/light", methods=['GET','POST'])
 def light():
-	red = request.args.get('red')
-	green = request.args.get('green')
-	blue = request.args.get('blue')
-	brightness = request.args.get('brightness')
-	lightControl.lightSwitch(int(red), int(green),\
-			int(blue), float(brightness))
+	red = int(request.args.get('red'))
+	green = int(request.args.get('green'))
+	blue = int(request.args.get('blue'))
+	brightness = float(request.args.get('brightness'))
+	lightControl.lightSwitch(red, green,\
+			blue, brightness)
+    if Light.query.count() != 1:
+        light = Light(red=red, green=green, blue=blue, brightness=brightness)
+        if brightness * red == 0:
+            light.status = False
+        else:
+            light.status = True
+        db.session.add(light)
+        db.session.commit(light)
+    else:
+        light = Light.query.first()
+        light.red = red
+        light.green = green
+        light.blue = blue
+        light.brightness = brightness
+        if brightness * red == 0:
+            light.status = False
+        else:
+            light.status = True
+        db.session.commit(light)
 	rsp = {'response':1}
 	return jsonify(rsp)
 
