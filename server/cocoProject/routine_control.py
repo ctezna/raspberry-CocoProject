@@ -1,5 +1,5 @@
 from cocoProject import db
-from cocoProject.models import Routine
+from cocoProject.models import Routine, Light
 from crontab import CronTab
 import os
 
@@ -17,7 +17,12 @@ class RoutineControl():
         if task == 'Dispense Food':
             task = 'motor_control.py 4'
         if task == 'Light':
-            task = 'light_control.py 255 255 255 0.4'
+            light = Light.query.first()
+            red = light.red
+            green = light.green
+            blue = light.blue
+            brightness = light.brightness
+            task = 'light_control.py {} {} {} {}'.format(red, green, blue, brightness)
         cmd = '$(which python3) /home/pi/raspberry-cocoproject/server/cocoProject/'+ task + ' >> ~/cron.log 2>&1'
         hours = []
         minutes = []

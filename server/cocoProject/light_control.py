@@ -1,4 +1,5 @@
 import threading, os, sys
+from cocoProject.models import Light
 
 
 class LightControl():
@@ -7,6 +8,25 @@ class LightControl():
         self.thread = None
 
     def lightSwitch(self, red, green, blue, brightness):
+        if Light.query.count() != 1:
+            light = Light(red=red, green=green, blue=blue, brightness=brightness)
+            if brightness * red == 0:
+                light.status = False
+            else:
+                light.status = True
+            db.session.add(light)
+            db.session.commit(light)
+        else:
+            light = Light.query.first()
+            light.red = red
+            light.green = green
+            light.blue = blue
+            light.brightness = brightness
+            if brightness * red == 0:
+                light.status = False
+            else:
+                light.status = True
+            db.session.commit(light)
         LightControl.thread = threading.Thread(target=self._thread(red, green, blue, brightness))
         LightControl.thread.start()
 

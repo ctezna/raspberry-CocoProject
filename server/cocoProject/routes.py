@@ -1,4 +1,4 @@
-from cocoProject import app, motor, lightStatus, camera, lightControl, soundControl, routineControl
+from cocoProject import app, motor, camera, lightControl, soundControl, routineControl
 from flask import render_template, Response, url_for, jsonify, request
 from time import sleep
 import os, json
@@ -45,10 +45,15 @@ def light():
 	green = request.args.get('green')
 	blue = request.args.get('blue')
 	brightness = request.args.get('brightness')
-	lightControl.lightSwitch(red, green,\
-			blue, brightness)	
+	lightControl.lightSwitch(int(red), int(green),\
+			int(blue), float(brightness))
 	rsp = {'response':1}
 	return jsonify(rsp)
+
+@app.route("/light/status")
+def light_status():
+    light = Light.query.first()
+    return jsonify({'light status': light.status }), 200
 
 @app.route("/reboot", methods=['GET','POST'])
 def reboot():
@@ -72,4 +77,4 @@ def removeRoutine():
 @app.route("/getRoutines", methods=['GET'])
 def getRoutines():
 	routines = routineControl.get_routines()
-	return jsonify({'routines': routines}, 201)
+	return jsonify({'routines': routines}), 201
