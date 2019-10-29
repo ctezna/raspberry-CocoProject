@@ -13,7 +13,7 @@ class RoutineControl():
         self.cron = CronTab(tabfile=self.file)
 
 
-    def new_cron(self, routineId, task, days, times):
+    def new_cron(self, routineId, task, days, times, light_splice):
         hours = []
         minutes = []
         dates = []
@@ -40,12 +40,12 @@ class RoutineControl():
         
         if task == 'Dispense Food':
             task = 'motor_control.py 4'
-        if task == 'Light':
-            light = Light.query.first()
-            red = light.red
-            green = light.green
-            blue = light.blue
-            brightness = light.brightness
+        if task == 'Light' and len(light_splice) > 1:
+            light_splice = light_splice.split(',')
+            red = light_splice[0]
+            green = light_splice[1]
+            blue = light_splice[2]
+            brightness = light_splice[3]
             task = 'light_control.py {} {} {} {}'.format(red, green, blue, brightness)
             task2 = 'light_status.py {} {} {} {}'.format(red, green, blue, brightness)
             lightcmd = '$(which python3) /home/pi/raspberry-cocoproject/server/cocoProject/' + task2 +' >> ~/light-status.log 2>&1'
@@ -67,8 +67,8 @@ class RoutineControl():
         self.cron.write()
         os.system("crontab " + self.file)
 
-    def save_routine(self, routineId, task, days, times):
-        self.new_cron(routineId, task, days, times)
+    def save_routine(self, routineId, task, days, times, light_splice):
+        self.new_cron(routineId, task, days, times, light_splice)
         routine = Routine(id=routineId, task=task, days=days, times=times)
         db.session.add(routine)
         db.session.commit()

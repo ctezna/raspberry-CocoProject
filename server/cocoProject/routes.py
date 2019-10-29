@@ -106,13 +106,15 @@ def reboot():
 
 @app.route("/addRoutine", methods=['GET'])
 def addRoutine():
+    light_splice = ''
     if request.args.get('task') == 'Light' and Light.query.count() < 1:
         light = Light()
         db.session.add(light)
         db.session.commit()
+        light_splice = request.args.get('light_splice')
         
     task = routineControl.save_routine(request.args.get('routine_id'),request.args.get('task'),\
-			request.args.get('days'),request.args.get('times'))
+			request.args.get('days'),request.args.get('times'), light_splice)
             
     return jsonify({'task': task}), 201
 
