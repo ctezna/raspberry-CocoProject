@@ -82,8 +82,8 @@ def light():
 def light_status():
     lightstat = '/home/pi/raspberry-cocoproject/server/cocoProject/lightstatus.json'
     data = ''
-    with open(lightstat) as json-file:
-        data = json.load(json-file)
+    with open(lightstat, "r") as json_file:
+        data = json.load(json_file)
     light = Light.query.first()
     return jsonify(data), 200
 
