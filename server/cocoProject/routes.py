@@ -58,13 +58,13 @@ def light():
 
     if brightness == 0:
         lightstat = '/home/pi/raspberry-cocoproject/server/cocoProject/lightstatus.json'
-        with open(lightstat, "a") as file:
+        with open(lightstat, "r+") as file:
             file.seek(0)
             json.dump({'status':False}, file)
             file.truncate()
     else:
         lightstat = '/home/pi/raspberry-cocoproject/server/cocoProject/lightstatus.json'
-        with open(lightstat, "a") as file:
+        with open(lightstat, "r+") as file:
             file.seek(0)
             json.dump({'status':True}, file)
             file.truncate()
