@@ -1,8 +1,9 @@
-from cocoProject import db, app
-from cocoProject.models import Light
+import os, json
 
 if __name__ == "__main__":
-    with app.app_context():
-        light = Light.query.first()
-        light.status = True
-        db.session.commit()
+    lightstat = '/home/pi/raspberry-cocoproject/server/cocoProject/lightstatus.json'
+    with open(lightstat, "a") as file:
+        file.seek(0)
+        json.dump({'status':True}, file)
+        file.truncate()
+

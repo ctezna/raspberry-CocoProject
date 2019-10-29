@@ -57,9 +57,17 @@ def light():
         light = Light.query.first()
 
     if brightness == 0:
-        light.status = False
+        lightstat = '/home/pi/raspberry-cocoproject/server/cocoProject/lightstatus.json'
+        with open(lightstat, "a") as file:
+            file.seek(0)
+            json.dump({'status':False}, file)
+            file.truncate()
     else:
-        light.status = True
+        lightstat = '/home/pi/raspberry-cocoproject/server/cocoProject/lightstatus.json'
+        with open(lightstat, "a") as file:
+            file.seek(0)
+            json.dump({'status':True}, file)
+            file.truncate()
         light.red = red
         light.green = green
         light.blue = blue
@@ -72,8 +80,12 @@ def light():
 
 @app.route("/light/status")
 def light_status():
+    lightstat = '/home/pi/raspberry-cocoproject/server/cocoProject/lightstatus.json'
+    data = ''
+    with open(lightstat) as json:
+        data = json.load(json)
     light = Light.query.first()
-    return jsonify({'light status': light.status }), 200
+    return jsonify(data), 200
 
 @app.route("/reboot", methods=['GET','POST'])
 def reboot():
