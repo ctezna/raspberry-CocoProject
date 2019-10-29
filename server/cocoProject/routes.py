@@ -42,34 +42,33 @@ def camOff():
 
 @app.route("/light", methods=['GET','POST'])
 def light():
-	red = int(request.args.get('red'))
-	green = int(request.args.get('green'))
-	blue = int(request.args.get('blue'))
-	brightness = float(request.args.get('brightness'))
-	lightControl.lightSwitch(red, green,\
-			blue, brightness)
-    
-    if Light.query.count() != 1:
-        light = Light(red=red, green=green, blue=blue, brightness=brightness)
-        if brightness * red == 0:
-            light.status = False
-        else:
-            light.status = True
+    red = int(request.args.get('red'))
+    green = int(request.args.get('green'))
+    blue = int(request.args.get('blue'))
+    brightness = float(request.args.get('brightness'))
+    lightControl.lightSwitch(red, green, blue, brightness)
+
+    light = ''
+
+    if Light.query.count() < 1:
+        light = Light()
         db.session.add(light)
-        db.session.commit()
     else:
         light = Light.query.first()
+
+    if red * brightness == 0:
+        light.status = False
+    else:
+        light.status = True
         light.red = red
         light.green = green
         light.blue = blue
         light.brightness = brightness
-        if brightness * red == 0:
-            light.status = False
-        else:
-            light.status = True
-        db.session.commit()
-	rsp = {'response':1}
-	return jsonify(rsp)
+    
+    db.session.commit()
+    
+    rsp = {'response':1}
+    return jsonify(rsp)
 
 @app.route("/light/status")
 def light_status():
