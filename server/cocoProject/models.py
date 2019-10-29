@@ -10,7 +10,7 @@ class Routine(db.Model):
 class Light(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     status = db.Column(db.Boolean)
-    red = db.Column(db.Integer)
-    blue = db.Column(db.Integer)
-    green = db.Column(db.Integer)
-    brightness = db.Column(db.Float)
+    red = db.Column(db.Integer, default=255)
+    blue = db.Column(db.Integer, default=255)
+    green = db.Column(db.Integer, default=255)
+    brightness = db.Column(db.Float, default=0.4)
