@@ -89,7 +89,6 @@ def light_status():
     data = ''
     with open(lightstat, "r") as json_file:
         data = json.load(json_file)
-    light = Light.query.first()
     return jsonify(data), 200
 
 @app.route("/reboot", methods=['GET','POST'])
