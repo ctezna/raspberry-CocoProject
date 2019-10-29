@@ -1,5 +1,5 @@
 from cocoProject import db
-from cocoProject.models import Routine, Light
+from cocoProject.models import Routine
 from crontab import CronTab
 import os
 

@@ -1,6 +1,5 @@
 from cocoProject import app, motor, camera, lightControl, routineControl, db
 from flask import render_template, Response, url_for, jsonify, request
-from cocoProject.models import Light
 from time import sleep
 import os, json
 
@@ -48,14 +47,6 @@ def light():
     brightness = float(request.args.get('brightness'))
     lightControl.lightSwitch(red, green, blue, brightness)
 
-    light = ''
-
-    if Light.query.count() < 1:
-        light = Light()
-        db.session.add(light)
-    else:
-        light = Light.query.first()
-
     if brightness == 0:
         lightstat = '/home/pi/raspberry-cocoproject/server/cocoProject/lightstatus.json'
         with open(lightstat, "r+") as file:
@@ -79,10 +70,6 @@ def light():
                         'brightness': brightness
                         }, file)
             file.truncate()
-        light.red = red
-        light.green = green
-        light.blue = blue
-        light.brightness = brightness
     
     db.session.commit()
     
@@ -108,10 +95,6 @@ def reboot():
 def addRoutine():
     light_splice = ''
     if request.args.get('task') == 'Light':
-        if Light.query.count() < 1:
-            light = Light()
-            db.session.add(light)
-            db.session.commit()
         light_splice = request.args.get('light_splice')
         
     task = routineControl.save_routine(request.args.get('routine_id'),request.args.get('task'),\
