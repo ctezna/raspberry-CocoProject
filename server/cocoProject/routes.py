@@ -88,10 +88,11 @@ def addRoutine():
         light = Light()
         db.session.add(light)
         db.session.commit()
-
-	task = routineControl.save_routine(request.args.get('routine_id'),request.args.get('task'),\
+        
+    task = routineControl.save_routine(request.args.get('routine_id'),request.args.get('task'),\
 			request.args.get('days'),request.args.get('times'))
-	return jsonify({'task': task}), 201
+            
+    return jsonify({'task': task}), 201
 
 @app.route("/removeRoutine", methods=['GET'])
 def removeRoutine():
