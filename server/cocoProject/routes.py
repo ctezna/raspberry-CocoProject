@@ -60,7 +60,9 @@ def light():
         lightstat = '/home/pi/raspberry-cocoproject/server/cocoProject/lightstatus.json'
         with open(lightstat, "r+") as file:
             file.seek(0)
-            json.dump({'status':False}, file)
+            data = json.load(file)
+            data['status'] = False
+            json.dump(data, file)
             file.truncate()
     else:
         lightstat = '/home/pi/raspberry-cocoproject/server/cocoProject/lightstatus.json'
