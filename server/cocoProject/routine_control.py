@@ -48,7 +48,7 @@ class RoutineControl():
             brightness = light.brightness
             task = 'light_control.py {} {} {} {}'.format(red, green, blue, brightness)
             task2 = 'light_status.py {} {} {} {}'.format(red, green, blue, brightness)
-            lightcmd = '$(which python3) /home/pi/raspberry-cocoproject/server/cocoProject/light_status.py >> ~/light-status.log 2>&1'
+            lightcmd = '$(which python3) /home/pi/raspberry-cocoproject/server/cocoProject/' + task2 +' >> ~/light-status.log 2>&1'
             job = self.cron.new(command=lightcmd, comment=str(routineId))
             job.dow.on(*dates)
             job.hour.on(*hours)
