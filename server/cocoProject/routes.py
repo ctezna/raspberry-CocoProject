@@ -1,4 +1,4 @@
-from cocoProject import app, motor, camera, lightControl, routineControl
+from cocoProject import app, motor, camera, lightControl, routineControl, db
 from flask import render_template, Response, url_for, jsonify, request
 from cocoProject.models import Light
 from time import sleep
