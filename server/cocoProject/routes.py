@@ -48,6 +48,7 @@ def light():
 	brightness = float(request.args.get('brightness'))
 	lightControl.lightSwitch(red, green,\
 			blue, brightness)
+    
     if Light.query.count() != 1:
         light = Light(red=red, green=green, blue=blue, brightness=brightness)
         if brightness * red == 0:
@@ -55,7 +56,7 @@ def light():
         else:
             light.status = True
         db.session.add(light)
-        db.session.commit(light)
+        db.session.commit()
     else:
         light = Light.query.first()
         light.red = red
@@ -66,7 +67,7 @@ def light():
             light.status = False
         else:
             light.status = True
-        db.session.commit(light)
+        db.session.commit()
 	rsp = {'response':1}
 	return jsonify(rsp)
 
