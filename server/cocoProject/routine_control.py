@@ -14,16 +14,6 @@ class RoutineControl():
 
 
     def new_cron(self, routineId, task, days, times):
-        if task == 'Dispense Food':
-            task = 'motor_control.py 4'
-        if task == 'Light':
-            light = Light.query.first()
-            red = light.red
-            green = light.green
-            blue = light.blue
-            brightness = light.brightness
-            task = 'light_control.py {} {} {} {}'.format(red, green, blue, brightness)
-        cmd = '$(which python3) /home/pi/raspberry-cocoproject/server/cocoProject/'+ task + ' >> ~/cron.log 2>&1'
         hours = []
         minutes = []
         dates = []
@@ -47,6 +37,22 @@ class RoutineControl():
             minute = time.split(':')[1]
             hours.append(hour)
             minutes.append(minute)
+        
+        if task == 'Dispense Food':
+            task = 'motor_control.py 4'
+        if task == 'Light':
+            light = Light.query.first()
+            red = light.red
+            green = light.green
+            blue = light.blue
+            brightness = light.brightness
+            task = 'light_control.py {} {} {} {}'.format(red, green, blue, brightness)
+            lightcmd = '$(which python3) /home/pi/raspberry-cocoproject/server/cocoProject/light_status.py >> ~/light-status.log 2>&1'
+            job = self.cron.new(command=lightcmd, comment=str(routineId))
+            job.dow.on(*dates)
+            job.hour.on(*hours)
+            job.minute.on(*minutes)
+        cmd = '$(which python3) /home/pi/raspberry-cocoproject/server/cocoProject/'+ task + ' >> ~/cron.log 2>&1'
             
         job = self.cron.new(command=cmd, comment=str(routineId))
         job.dow.on(*dates)

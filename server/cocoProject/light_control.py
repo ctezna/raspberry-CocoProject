@@ -26,8 +26,3 @@ class LightControl():
 if __name__ == "__main__":
     light = LightControl()
     light.lightSwitch(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
-    from cocoProject import db
-    from cocoProject.models import Light
-    lt = Light.query.first()
-    lt.status = True
-    db.session.commit()
