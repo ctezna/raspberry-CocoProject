@@ -56,7 +56,7 @@ def light():
     else:
         light = Light.query.first()
 
-    if red * brightness == 0:
+    if brightness == 0:
         light.status = False
     else:
         light.status = True
