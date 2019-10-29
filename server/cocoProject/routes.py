@@ -66,7 +66,12 @@ def light():
         lightstat = '/home/pi/raspberry-cocoproject/server/cocoProject/lightstatus.json'
         with open(lightstat, "r+") as file:
             file.seek(0)
-            json.dump({'status':True}, file)
+            json.dump({'status':True,
+                        'red': red,
+                        'green': green,
+                        'blue': blue,
+                        'brightness': brightness
+                        }, file)
             file.truncate()
         light.red = red
         light.green = green
