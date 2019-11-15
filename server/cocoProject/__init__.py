@@ -9,11 +9,11 @@ import os, threading
 from time import sleep
 
 def _thread_app():
-    os.system('$(which python3) /home/pi/IoT-Bootcamp/Project1/code/station.py > \
+    os.system('sudo $(which python3) /home/pi/IoT-Bootcamp/Project1/code/station.py > \
         /home/pi/logs/tutorial.log 2>&1 &')
 
 def _thread_ngrok():
-    os.system('$(which ngrok) http -subdomain=ctezna 5000 > \
+    os.system('sudo $(which ngrok) http -subdomain=ctezna 5000 > \
         /home/pi/logs/ngrok.log 2>&1 &')
 
 app = Flask(__name__)
