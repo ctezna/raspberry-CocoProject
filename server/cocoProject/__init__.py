@@ -22,6 +22,7 @@ if Config.DEVICETYPE == 'coco':
     lightControl.lightSwitch(-2, -2, -2, 0.2)
     lightControl.lightSwitch(0, 0, 0, 0)
 elif Config.DEVICETYPE == 'horus':
+    camera.set_flip(True)
     motor = 404
 
 from cocoProject import routes, models
