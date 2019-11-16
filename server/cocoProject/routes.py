@@ -71,8 +71,6 @@ def light():
                         }, file)
             file.truncate()
     
-    db.session.commit()
-    
     rsp = {'response':1}
     return jsonify(rsp)
 
